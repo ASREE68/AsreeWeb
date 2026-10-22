@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ความรู้เรื่องความกดอากาศ</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts (Kanit & Prompt) -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700&family=Prompt:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #4c8dae 0%, #0369a1 100%);
+            --accent-gradient: linear-gradient(135deg, #81cdee 0%, #1d4ed8 100%);
+            --dark-bg: #0f172a;
+        }
+
+        body {
+            font-family: 'Prompt', sans-serif;
+            color: #334155;
+            background-color: #e9f0f7;
+        }
+
+        h1, h2, h3, h4, h5, h6, .navbar-brand {
+            font-family: 'Kanit', sans-serif;
+        }
+
+        .navbar-custom {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(211, 223, 239, 0.8);
+        }
+
+        .hero-section {
+            padding: 90px 0 40px;
+            background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.15) 0%, rgba(255, 255, 255, 0) 50%),
+                        radial-gradient(circle at bottom left, rgba(2, 132, 199, 0.1) 0%, rgba(255, 255, 255, 0) 50%);
+        }
+
+        .hero-img {
+            max-height: 380px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .text-gradient {
+            background: var(--primary-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-gradient {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 500;
+            box-shadow: 0 8px 16px rgba(2, 132, 199, 0.25);
+        }
+
+        .card-custom {
+            border: none;
+            border-radius: 20px;
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+        }
+
+        .card-custom:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .icon-box {
+            width: 55px;
+            height: 55px;
+            border-radius: 16px;
+            background: var(--accent-gradient);
+            color: rgb(240, 238, 238);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+
+        .info-pill {
+            background: #eaf2f8;
+            color: #063d5d;
+            padding: 5px 14px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            display: inline-block;
+        }
+
+        footer {
+            background: var(--dark-bg);
+            color: #acbfd8;
+        }
+
+        /* คุมกรอบรูปภาพให้สูงเท่ากันเป๊ะ และย่อรูปให้อยู่ตรงกลางโดยไม่เสียสัดส่วน */
+        .tool-img-box {
+            width: 100%;
+            height: 220px; /* กำหนดความสูงกรอบรูปภาพคงที่ */
+            background-color: #f8fafc;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tool-img-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* ดึงรูปให้อยู่ในกรอบพอดี ไม่ขยายดันกล่อง */
+        }
+
+        /* คุมการ์ดทั้งสองฝั่งให้สูงเท่ากันเป๊ะ */
+        #tools .card-custom {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px; /* ปรับความสูงตามขนาด Navbar จริง */
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom py-2">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4 text-gradient" href="#"><i class="bi bi-wind me-2"></i>Air <span class="text-dark">pressure</span></a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-4">
+                    <li class="nav-item"><a class="nav-link text-dark fw-medium" href="#hero">หน้าแรก</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark fw-medium" href="#factors">ปัจจัยที่มีผล</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark fw-medium" href="#atmosphere">ชั้นบรรยากาศ</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark fw-medium" href="#types">ประเภทความกดอากาศ</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark fw-medium" href="#tools">เครื่องมือวัด</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark fw-medium" href="#map">แผนที่</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark fw-medium" href="#references">บรรณานุกรม</a></li>
+                </ul>
+                <a href="https://aeromet.tmd.go.th/KnowledgeOPress_newweb.php" class="btn btn-gradient btn-sm">เรียนรู้เพิ่มเติม</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center gy-4">
+                <div class="col-lg-6">
+                    <span class="info-pill mb-2 fw-medium">🌡️ เรื่องน่ารู้เกี่ยวกับความกดอากาศ</span>
+                    <h1 class="display-5 fw-bold mb-3">ทำความเข้าใจ <br><span class="text-gradient">ความกดอากาศ & ลมฟ้าอากาศ</span></h1>
+                    <p class="text-secondary mb-4 fs-6">
+                        <strong>ความกดอากาศ</strong> หรือที่รู้จักกันในชื่อความดันบรรยากาศ คือแรงดันภายใต้ชั้นบรรยากาศของโลก ซึ่งเกิดจากน้ำหนักของมวลอากาศที่กดทับลงบนพื้นผิว ณ จุดนั้น ๆ โดยทั่วไปความกดอากาศจะ<strong>ลดลงอย่างรวดเร็วเมื่อระดับความสูงเพิ่มขึ้น</strong> สำหรับบรรยากาศมาตรฐาน (สัญลักษณ์: atm) คือหน่วยของแรงดันที่กำหนดไว้เท่ากับ 101,325 Pa (1,013.25 hPa หรือ 1,013.25 mbar) ซึ่งเทียบเท่ากับ 760 mmHg, 29.9212 นิ้วปรอท หรือ 14.696 psi ซึ่งค่า 1 atm นี้เทียบเท่ากับความดันบรรยากาศเฉลี่ยที่ระดับน้ำทะเลพอดี
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="#factors" class="btn btn-gradient">ดูปัจจัยที่มีผล</a>
+                        <a href="#types" class="btn btn-outline-secondary rounded-pill px-4 align-self-center">ดูประเภทความกดอากาศ</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <a href="https://tuemaster.com/blog/%E0%B8%9F%E0%B8%B4%E0%B8%AA%E0%B8%B4%E0%B8%81%E0%B8%AA%E0%B9%8C%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%94%E0%B8%B1%E0%B8%99%E0%B8%82%E0%B8%AD/">
+                        <img src="img/จภ.jpg" class="img-fluid rounded-4 shadow-lg hero-img" alt="Atmospheric Clouds">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ส่วนที่ 1: เปลี่ยนเนื้อหาการ์ด 3 ใบด้านบนเป็น "ปัจจัยที่มีผลต่อความกดอากาศ" -->
+    <section id="factors" class="py-5 bg-light">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">ปัจจัยที่มีผลต่อความกดอากาศ</h2>
+                <p class="text-secondary">องค์ประกอบสำคัญที่ทำให้ค่าความกดอากาศในแต่ละพื้นที่แตกต่างกัน</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card card-custom p-4 h-100">
+                        <div class="icon-box">
+                            <i class="bi bi-graph-up-arrow"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">ความสูงจากระดับน้ำทะเล</h4>
+                        <p class="text-secondary">ยิ่งสูงขึ้นไป อนุภาคของอากาศจะยิ่งเบาบางลง ทำให้ความกดอากาศลดลงตามระดับความสูง</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-custom p-4 h-100">
+                        <div class="icon-box">
+                            <i class="bi bi-thermometer-half"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">อุณหภูมิ</h4>
+                        <p class="text-secondary">เมื่ออุณหภูมิสูงขึ้น อากาศจะขยายตัวและเบาลง ความกดอากาศจึงลดลง ในทางกลับกันอากาศเย็นจะมีความกดอากาศสูงกว่า</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-custom p-4 h-100">
+                        <div class="icon-box">
+                            <i class="bi bi-droplet-half"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">ความชื้นในอากาศ</h4>
+                        <p class="text-secondary">ไอน้ำในอากาศมีความหนาแน่นน้อยกว่าอากาศแห้ง อากาศที่มีความชื้นสูงจึงมีความกดอากาศต่ำกว่าอากาศแห้ง</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Atmosphere Layers Section -->
+    <section id="atmosphere" class="py-5" style="background-color: #0b1329;">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <span class="badge rounded-pill bg-info text-dark px-3 py-2 mb-2 fw-medium">🌍 โครงสร้างชั้นบรรยากาศ</span>
+                <h2 class="fw-bold text-white">ความกดอากาศในแต่ละชั้นบรรยากาศ</h2>
+                <p class="text-light opacity-75">ยิ่งระดับความสูงเพิ่มขึ้น อนุภาคของอากาศจะยิ่งเบาบางลง ส่งผลให้ความกดอากาศลดลงตามลำดับ</p>
+            </div>
+
+            <div class="row align-items-center gy-4">
+                <!-- ฝั่งซ้าย: แสดงรูปภาพชั้นบรรยากาศ (ปรับขนาดให้เล็กลงพอดีตา) -->
+                <div class="col-lg-5 text-center">
+                    <div class="p-3 bg-dark bg-opacity-50 rounded-4 shadow-sm d-inline-block border border-secondary border-opacity-25">
+                        <a href="https://www.trueplookpanya.com/learning/detail/33051">
+                        <img src="img/03.jpg" class="img-fluid rounded-4 shadow" alt="Atmospheric Layers Diagram" style="max-width: 380px; width: 100%; height: auto;">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ฝั่งขวา: Accordion แสดงรายละเอียด -->
+                <div class="col-lg-7 ps-lg-4">
+                    <div class="accordion accordion-custom" id="atmosphereAccordion">
+                        
+                        <!-- ชั้นที่ 1 -->
+                        <div class="accordion-item border-0 mb-3 rounded-3 shadow-sm overflow-hidden bg-white">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button fw-bold text-primary bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    🌍 1. ชั้นโทรโพสเฟียร์ (Troposphere) [0 - 10 กม.]
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#atmosphereAccordion">
+                                <div class="accordion-body text-secondary fs-6">
+                                    <p class="mb-1"><strong>ความกดอากาศ:</strong> สูงที่สุด (~1,013.25 hPa ที่ระดับน้ำทะเล)</p>
+                                    <p class="mb-0">เป็นชั้นที่หนาแน่นที่สุด มีมวลอากาศถึง 80% ของบรรยากาศทั้งหมด และเป็นบริเวณที่เกิดสภาพอากาศ ไอน้ำ เมฆ และฝน</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ชั้นที่ 2 -->
+                        <div class="accordion-item border-0 mb-3 rounded-3 shadow-sm overflow-hidden bg-white">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed fw-bold text-primary bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    ✈️ 2. ชั้นสตราโตสเฟียร์ (Stratosphere) [10 - 50 กม.]
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#atmosphereAccordion">
+                                <div class="accordion-body text-secondary fs-6">
+                                    <p class="mb-1"><strong>ความกดอากาศ:</strong> ลดลงเหลือเพียง 1% - 10%</p>
+                                    <p class="mb-0">บรรยากาศนิ่งและปราศจากพายุ มีชั้นโอโซนช่วยกรองรังสี UV จึงเป็นระดับความสูงที่เหมาะสมต่อการบินของเครื่องบินพาณิชย์</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ชั้นที่ 3 -->
+                        <div class="accordion-item border-0 mb-3 rounded-3 shadow-sm overflow-hidden bg-white">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed fw-bold text-primary bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    ☄️ 3. ชั้นมีโซสเฟียร์ (Mesosphere) [50 - 85 กม.]
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#atmosphereAccordion">
+                                <div class="accordion-body text-secondary fs-6">
+                                    <p class="mb-1"><strong>ความกดอากาศ:</strong> ต่ำมาก (ต่ำกว่า 0.1%)</p>
+                                    <p class="mb-0">แม้อากาศจะเบาบางมาก แต่ยังมีความหนาแน่นเพียงพอที่จะสร้างแรงเสียดทานช่วยเผาไหม้อุกกาบาต (ดาวตก) ไม่ให้ตกถึงพื้นโลก</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ชั้นที่ 4 -->
+                        <div class="accordion-item border-0 mb-3 rounded-3 shadow-sm overflow-hidden bg-white">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed fw-bold text-primary bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    🌌 4. ชั้นเทอร์โมสเฟียร์ (Thermosphere) [85 - 600 กม.]
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#atmosphereAccordion">
+                                <div class="accordion-body text-secondary fs-6">
+                                    <p class="mb-1"><strong>ความกดอากาศ:</strong> เข้าใกล้สภาวะสูญญากาศ</p>
+                                    <p class="mb-0">มีอนุภาคประจุไฟฟ้าจำนวนมาก เป็นชั้นที่เกิดปรากฏการณ์ออโรรา (แสงเหนือ-แสงใต้) และเป็นตำแหน่งวงโคจรของดาวเทียม</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ชั้นที่ 5 -->
+                        <div class="accordion-item border-0 rounded-3 shadow-sm overflow-hidden bg-white">
+                            <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed fw-bold text-primary bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    🚀 5. ชั้นเอ็กโซสเฟียร์ (Exosphere) [600 กม. ขึ้นไป]
+                                </button>
+                            </h2>
+                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#atmosphereAccordion">
+                                <div class="accordion-body text-secondary fs-6">
+                                    <p class="mb-1"><strong>ความกดอากาศ:</strong> ไม่มี (0 hPa)</p>
+                                    <p class="mb-0">เป็นชั้นนอกสุดที่ค่อยๆ กลืนหายไปกับอวกาศ โมเลกุลแก๊สเบาบางมากจนแรงดึงดูดของโลกไม่สามารถยึดไว้ได้</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ส่วนที่ 2:  "ประเภทของระบบความกดอากาศ (H L ลม)" -->
+    <section id="types" class="py-5 bg-white">
+        <div class="container py-4">
+            <div class="row align-items-center gy-4">
+                <div class="col-lg-6 text-center">
+                    <!-- รูปภาพแผนที่อากาศ H และ L -->
+                    <a href="https://theactive.thaipbs.or.th/news/climate-change-20251115">
+                        <img src="img/01.jpg" class="img-fluid rounded-4 shadow hero-img" alt="แผนที่ความกดอากาศ H L">
+                    </a>
+                </div>
+                <div class="col-lg-6 ps-lg-5">
+                    <h2 class="fw-bold mb-4">ประเภทของระบบความกดอากาศ</h2>
+                    <div class="d-flex align-items-start mb-4">
+                        <i class="bi bi-arrow-down-circle text-primary fs-3 me-3"></i>
+                        <div>
+                            <h5 class="fw-bold mb-1">ความกดอากาศสูง (H)</h5>
+                            <p class="text-secondary mb-0">เกิดจากอากาศเย็นที่มีความหนาแน่นสูงจมตัวลง ท้องฟ้าจะโปร่ง อากาศแห้งและเย็น มักไม่มีเมฆและฝน</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-start mb-4">
+                        <i class="bi bi-arrow-up-circle text-primary fs-3 me-3"></i>
+                        <div>
+                            <h5 class="fw-bold mb-1">ความกดอากาศต่ำ (L)</h5>
+                            <p class="text-secondary mb-0">เกิดจากอากาศร้อนลอยตัวสูงขึ้น อากาศรอบข้างเข้าแทนที่ มักทำให้เกิดเมฆ ฝน หรือพายุหมุน</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-start">
+                        <i class="bi bi-wind text-primary fs-3 me-3"></i>
+                        <div>
+                            <h5 class="fw-bold mb-1">การเกิดลม (Wind)</h5>
+                            <p class="text-secondary mb-0">ลมเกิดจากการเคลื่อนที่ของอากาศจากบริเวณที่มีความกดอากาศสูงไปสู่บริเวณที่มีความกดอากาศต่ำ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="py-5" style="background-color: #eef5f9;">
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <span class="badge rounded-pill bg-primary bg-opacity-10 text-primary px-3 py-2 mb-2 fw-medium">🌡️ เครื่องมือตรวจวัด</span>
+                <h2 class="fw-bold mb-3 text-dark">เครื่องมือสำหรับวัดความกดอากาศ</h2>
+                <p class="text-secondary mb-4">นักอุตุนิยมวิทยาใช้เครื่องมือเฉพาะทางในการตรวจวัดค่าแรงดันอากาศเพื่อพยากรณ์อากาศ</p>
+            </div>
+        </div>
+        <div class="row g-4 align-items-stretch">
+            <!-- การ์ดฝั่งซ้าย: บารอมิเตอร์ปรอท -->
+            <div class="col-md-6 d-flex">
+                <div class="card border-0 rounded-4 p-4 text-center w-100 d-flex flex-column justify-content-between shadow-sm" style="background-color: #f4f8fb;">
+                    <div>
+                        <div class="tool-img-box mb-3 bg-white p-2 rounded-3 shadow-sm">
+                            <img src="img/ปารอมิเตอร์ปรอท.jpg" alt="บารอมิเตอร์ปรอท" class="img-fluid rounded">
+                        </div>
+                        <div class="icon-box mx-auto mb-3 bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                            <i class="bi bi-speedometer2 fs-4"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3 text-dark">บารอมิเตอร์ปรอท <br><span class="fs-6 text-muted fw-normal">(Mercury Barometer)</span></h4>
+                    </div>
+
+                    <!-- กล่องเน้นข้อความด้านในการ์ด -->
+                    <div class="text-start bg-white p-3 rounded-3 border border-info-subtle shadow-sm mt-2">
+                        <div class="mb-3">
+                            <span class="fw-bold text-primary"><i class="bi bi-gear-fill me-1"></i> หลักการทำงาน:</span>
+                            <p class="text-secondary mb-0 mt-1 fs-6 lh-base">
+                                อาศัยหลักการสมดุลของแรงดันบรรยากาศ โดยใช้หลอดแก้วยาวปิดปลายข้างหนึ่งที่มีปรอทอยู่เต็มคว่ำลงในอ่างปรอท เมื่อความกดอากาศเปลี่ยนแปลง แรงดันจะกดลงบนผิวปรอททำให้ระดับปรอทในหลอดขยับสูงขึ้นหรือลดลง
+                            </p>
+                        </div>
+                        <div>
+                            <span class="fw-bold text-success"><i class="bi bi-check-circle-fill me-1"></i> จุดเด่น & การใช้งาน:</span>
+                            <p class="text-secondary mb-0 mt-1 fs-6 lh-base">
+                                มีความแม่นยำและเสถียรภาพสูงที่สุด นิยมใช้เป็น <strong>"เครื่องมือมาตรฐานอ้างอิง"</strong> ในห้องปฏิบัติการและสถานีอุตุนิยมวิทยา
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- การ์ดฝั่งขวา: แอนิรอยด์บารอมิเตอร์ -->
+            <div class="col-md-6 d-flex">
+                <div class="card border-0 rounded-4 p-4 text-center w-100 d-flex flex-column justify-content-between shadow-sm" style="background-color: #f4f8fb;">
+                    <div>
+                        <div class="tool-img-box mb-3 bg-white p-2 rounded-3 shadow-sm">
+                            <img src="img/แอนิรอยด์บารอมิเตอร์.jpg" alt="แอนิรอยด์บารอมิเตอร์" class="img-fluid rounded">
+                        </div>
+                        <div class="icon-box mx-auto mb-3 bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                            <i class="bi bi-disc fs-4"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3 text-dark">แอนิรอยด์บารอมิเตอร์ <br><span class="fs-6 text-muted fw-normal">(Aneroid Barometer)</span></h4>
+                    </div>
+
+                    <!-- กล่องเน้นข้อความด้านในการ์ด -->
+                    <div class="text-start bg-white p-3 rounded-3 border border-info-subtle shadow-sm mt-2">
+                        <div class="mb-3">
+                            <span class="fw-bold text-primary"><i class="bi bi-gear-fill me-1"></i> หลักการทำงาน:</span>
+                            <p class="text-secondary mb-0 mt-1 fs-6 lh-base">
+                                เป็นเครื่องมือวัดแบบไม่ใช้ของเหลว ทำงานโดยใช้ตลับโลหะบางสุญญากาศ (Aneroid Capsule) ที่ยืดหรือยุบตัวตามแรงดันอากาศ แล้วถ่ายทอดผ่านกลไกคันโยกและเฟืองไปหมุนเข็มชี้บนหน้าปัด
+                            </p>
+                        </div>
+                        <div>
+                            <span class="fw-bold text-success"><i class="bi bi-check-circle-fill me-1"></i> จุดเด่น & การใช้งาน:</span>
+                            <p class="text-secondary mb-0 mt-1 fs-6 lh-base">
+                                ขนาดเล็ก พกพาสะดวก ปลอดภัยไร้สารปรอท นิยมใช้บนเรือ เดินป่า และดัดแปลงเป็นแอลติมิเตอร์วัดความสูงบนเครื่องบิน
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Map Section (แผนที่พร้อมหมุดปัก) -->
+    <section id="map" class="py-5 bg-light">
+        <div class="container py-4">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold">
+                    <i class="bi bi-geo-alt-fill text-primary me-2"></i>ที่ตั้ง / สถานที่ติดต่อ
+                </h2>
+                <p class="text-secondary mb-0">กรมอุตุนิยมวิทยา แหล่งข้อมูลความรู้เกี่ยวกับสภาพอากาศและบรรยากาศ</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card card-custom p-2 overflow-hidden shadow-sm">
+                        <!-- แผนที่แบบใส่หมุดปัก (Marker/Pin) -->
+                        <div class="ratio ratio-21x9 rounded-3 overflow-hidden">
+                            <iframe 
+                                src="https://maps.google.com/maps?q=กรมอุตุนิยมวิทยา%20บางนา&t=&z=15&ie=UTF8&iwloc=B&output=embed" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- References Section (บรรณานุกรม) -->
+    <section id="references" class="py-5 bg-white border-top">
+        <div class="container py-4">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h3 class="fw-bold mb-4 text-center">
+                        <i class="bi bi-book me-2 text-primary"></i>บรรณานุกรม (References)
+                    </h3>
+                    <div class="card card-custom p-4 bg-light">
+                        <ul class="list-unstyled mb-0 lh-lg text-secondary">
+                            <li class="mb-2">
+                                <i class="bi bi-link-45deg me-2 text-primary"></i>
+                                กรมอุตุนิยมวิทยา. (ม.ป.ป.). <strong>ความรู้เรื่องความกดอากาศและลม</strong>. สืบค้นเมื่อ 12 กันยายน 2026, จาก <a href="https://www.tmd.go.th" target="_blank" class="text-decoration-none">https://www.tmd.go.th</a>
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-link-45deg me-2 text-primary"></i>
+                                ศูนย์การเรียนรู้วิทยาศาสตร์โลกและดาราศาสตร์ (LESA). <strong>ระบบความกดอากาศ</strong>. สืบค้นเมื่อ 12 กันยายน 2026, จาก <a href="http://www.lesa.biz" target="_blank" class="text-decoration-none">http://www.lesa.biz</a>
+                            </li>
+                            <li class="mb-2">
+                            <i class="bi bi-link-45deg me-2 text-primary"></i>
+                                TUEMASTER. (ม.ป.ป.). <strong>ฟิสิกส์เรื่องความดันของอากาศและความชื้นของอากาศ.</strong> สืบค้นเมื่อ 20 ตุลาคม 2026, จาก <a href="https://tuemaster.com/blog/ฟิสิกส์เรื่องความดันข/" target="_blank" class="text-primary text-decoration-underline">https://tuemaster.com/blog/ฟิสิกส์เรื่องความดันข/</a>
+                            </li>
+                            <li class="mb-2">
+                            <i class="bi bi-link-45deg me-2 text-primary"></i>
+                                The Active (Thai PBS). (2568). <strong>กรมอุตุฯ คาด ไทยเตรียมอากาศเย็นฉ่ำ.</strong> สืบค้นเมื่อ 20 ตุลาคม 2026, จาก <a href="https://theactive.thaipbs.or.th/news/climate-change-20251115" target="_blank" class="text-primary text-decoration-underline">https://theactive.thaipbs.or.th/news/climate-change-20251115</a>
+                            </li>
+                            <li class="mb-0">
+                                <i class="bi bi-link-45deg me-2 text-primary"></i>
+                                สถาบันส่งเสริมการสอนวิทยาศาสตร์และเทคโนโลยี (สสวท.). (2560). <strong>หนังสือเรียนรายวิชาพื้นฐานวิทยาศาสตร์ โลก ดาราศาสตร์ และอวกาศ ชั้นมัธยมศึกษาปีที่ 5</strong>. โรงพิมพ์ สกสค. ลาดพร้าว.
+                            </li>
+                            <li class="mb-0">
+                            <i class="bi bi-link-45deg me-2 text-primary"></i>
+                            ทรูปลูกปัญญา. (ม.ป.ป.). <strong>ความกดอากาศ</strong>. สืบค้นเมื่อ 20 ตุลาคม 2026, จาก <a href="https://www.trueplookpanya.com/learning/detail/33051" target="_blank" class="text-primary text-decoration-none">https://www.trueplookpanya.com/learning/detail/33051</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center border-top">
+        <div class="container">
+            <p class="mb-0">Prepared by: Asree Cheauma 6820210384 มหาลัยสงขลานครินทร์วิทยาเขตปัตตานี</p>
+            <p class="mb-0">Gmail: canva4562@gmail.com</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
