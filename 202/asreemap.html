@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แผนที่ Google Maps เส้นทางขับรถจริง 3 จังหวัด</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; font-family: 'Prompt', sans-serif; }
+        #map { width: 100%; height: 100vh; }
+        body, html { margin: 0; padding: 0; }
+
+        /* แถบปุ่มเปลี่ยนประเภทแผนที่ (โทนสว่างสดใส) */
+        .map-type-controls {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            min-width: 160px;
+        }
+        .map-btn {
+            border: none;
+            background: #f1f5f9;
+            color: #334155;
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            text-align: left;
+            width: 100%;
+        }
+        .map-btn:hover, .map-btn.active {
+            background: #3a86ef; /* สีฟ้าสว่างสดใส */
+            color: #f9f7f7;
+            box-shadow: 0 2px 8px rgba(58, 134, 239, 0.4);
+        }
+
+        /* กล่องแสดงระยะทางจริงตามถนน */
+        .distance-card {
+            position: absolute;
+            bottom: 25px;
+            left: 15px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 14px 18px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            font-size: 0.88rem;
+            color: #1e293b;
+            max-width: 340px;
+            line-height: 1.6;
+        }
+        .distance-card h4 { 
+            margin: 0 0 8px 0; 
+            color: #3a86ef; 
+            font-size: 0.98rem; 
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* CSS หมุดกระพริบ */
+        .custom-marker {
+            position: absolute;
+            cursor: pointer;
+            transform: translate(-50%, -100%);
+        }
+        .pin-icon {
+            position: relative;
+            width: 24px;
+            height: 34px;
+            border-radius: 20px 20px 20px 5px;
+            border: 2px solid #ffffff;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+            z-index: 10;
+            transform: rotate(-45deg);
+            transform-origin: 50% 100%;
+        }
+        .pin-icon::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .pulse-ring {
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 3px solid;
+            border-radius: 50%;
+            height: 42px;
+            width: 42px;
+            animation: pulsate 1.8s ease-out infinite;
+            opacity: 0;
+            z-index: 5;
+        }
+
+        /* =========================================
+           จุดเปลี่ยนสีหมุดสดใส ( Bright Color Scheme )
+           ========================================= */
+        /* ปัตตานี - สีแดงชมพูสด (Pinkish Red) */
+        .pattani .pin-icon { background-color: #ff2a6d; }
+        .pattani .pulse-ring { border-color: #ff2a6d; }
+
+        /* ยะลา - สีส้มสว่างสดใส (Bright Amber Orange) */
+        .yala .pin-icon { background-color: #ff9f1c; }
+        .yala .pulse-ring { border-color: #ff9f1c; }
+
+        /* นราธิวาส - สีฟ้าอมเขียวสว่าง (Bright Cyan/Turquoise) */
+        .narathiwat .pin-icon { background-color: #05b2dc; }
+        .narathiwat .pulse-ring { border-color: #05b2dc; }
+
+        @keyframes pulsate {
+            0% { transform: translateX(-50%) scale(0.1); opacity: 0.0; }
+            50% { opacity: 0.9; }
+            100% { transform: translateX(-50%) scale(1.5); opacity: 0.0; }
+        }
+
+        .info-card { max-width: 250px; padding: 4px; }
+        .info-card h3 { margin: 0 0 6px 0; color: #3a86ef; font-size: 1.1rem; }
+        .info-card .tag { display: inline-block; background: #e0f2fe; color: #0284c7; font-size: 0.75rem; font-weight: 600; padding: 2px 8px; border-radius: 10px; margin-bottom: 8px; }
+        .info-card p { margin: 0 0 10px 0; font-size: 0.85rem; color: #475569; }
+        .info-btn { display: block; width: 100%; text-align: center; background-color: #3a86ef; color: #ffffff !important; text-decoration: none; padding: 8px 0; border-radius: 8px; font-size: 0.85rem; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+    <div class="map-type-controls">
+        <button class="map-btn active" onclick="changeMapType('roadmap', this)">🗺️ แผนที่ถนน</button>
+        <button class="map-btn" onclick="changeMapType('satellite', this)">🛰️ ภาพดาวเทียม</button>
+        <button class="map-btn" onclick="changeMapType('hybrid', this)">🛣️ ดาวเทียมถนน</button>
+        <button class="map-btn" onclick="changeMapType('terrain', this)">⛰️ ภูมิประเทศ</button>
+    </div>
+
+    <div class="distance-card">
+        <h4>🚗 ระยะทางขับรถจริงตามถนน:</h4>
+        <div id="distance-info">กำลังคำนวณเส้นทาง...</div>
+    </div>
+
+    <div id="map"></div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5l0aPyGFqiqY5DpqOYf-8YhN_eYHHobU&callback=initMap" async defer></script>
+
+    <script>
+        let map;
+
+        function initMap() {
+            const center = { lat: 6.6, lng: 101.4 };
+            
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 9,
+                center: center,
+                mapTypeId: "roadmap",
+                mapTypeControl: false
+            });
+
+            const locations = [
+                { name: "ปัตตานี", lat: 6.8681, lng: 101.2501, colorClass: "pattani", tag: "ศูนย์กลางวัฒนธรรม", desc: "เมืองท่าโบราณ พหุวัฒนธรรม", link: "https://th.wikipedia.org/wiki/จังหวัดปัตตานี" },
+                { name: "ยะลา", lat: 6.5411, lng: 101.2804, colorClass: "yala", tag: "ผังเมืองสวยงาม", desc: "เมืองผังเมืองสวยงามในหุบเขา", link: "https://th.wikipedia.org/wiki/จังหวัดยะลา" },
+                { name: "นราธิวาส", lat: 6.4264, lng: 101.8231, colorClass: "narathiwat", tag: "ผืนป่าสมบูรณ์", desc: "เมืองชายแดน ติดอ่าวไทย", link: "https://th.wikipedia.org/wiki/จังหวัดนราธิวาส" }
+            ];
+
+            const infowindow = new google.maps.InfoWindow();
+
+            class HTMLMarker extends google.maps.OverlayView {
+                constructor(lat, lng, className, onClick) {
+                    super();
+                    this.latlng = new google.maps.LatLng(lat, lng);
+                    this.className = className;
+                    this.onClick = onClick;
+                    this.div = null;
+                }
+                onAdd() {
+                    this.div = document.createElement('div');
+                    this.div.className = `custom-marker ${this.className}`;
+                    this.div.innerHTML = '<div class="pin-icon"></div><div class="pulse-ring"></div>';
+                    this.div.addEventListener('click', this.onClick);
+                    this.getPanes().overlayMouseTarget.appendChild(this.div);
+                }
+                draw() {
+                    const point = this.getProjection().fromLatLngToDivPixel(this.latlng);
+                    if (point && this.div) {
+                        this.div.style.left = point.x + 'px';
+                        this.div.style.top = point.y + 'px';
+                    }
+                }
+                onRemove() {
+                    if (this.div) {
+                        this.div.parentNode.removeChild(this.div);
+                        this.div = null;
+                    }
+                }
+            }
+
+            // ปักหมุดกระพริบทั้ง 3 จุด
+            locations.forEach(loc => {
+                const pos = new google.maps.LatLng(loc.lat, loc.lng);
+                const marker = new HTMLMarker(loc.lat, loc.lng, loc.colorClass, function() {
+                    const content = `
+                        <div class="info-card">
+                            <h3>${loc.name}</h3>
+                            <span class="tag">${loc.tag}</span>
+                            <p>${loc.desc}</p>
+                            <a href="${loc.link}" target="_blank" class="info-btn">ดูข้อมูลเพิ่มเติม</a>
+                        </div>
+                    `;
+                    infowindow.setContent(content);
+                    infowindow.setPosition(pos);
+                    infowindow.open(map);
+                });
+                marker.setMap(map);
+            });
+
+            // ระบบคำนวณเส้นทางขับรถ
+            const directionsService = new google.maps.DirectionsService();
+
+            function renderRoute(origin, destination, color, callback) {
+                const directionsRenderer = new google.maps.DirectionsRenderer({
+                    map: map,
+                    suppressMarkers: true,
+                    polylineOptions: {
+                        strokeColor: color, // สีเส้นทางขับรถ
+                        strokeOpacity: 0.9, // ความชัดของเส้น
+                        strokeWeight: 5     // ความหนาเส้น (ปรับเพิ่มจาก 4 เป็น 5 ให้เห็นชัดขึ้น)
+                    }
+                });
+
+                directionsService.route({
+                    origin: origin,
+                    destination: destination,
+                    travelMode: google.maps.TravelMode.DRIVING
+                }, (response, status) => {
+                    if (status === 'OK') {
+                        directionsRenderer.setDirections(response);
+                        const route = response.routes[0].legs[0];
+                        callback(route.distance.text, route.duration.text);
+                    }
+                });
+            }
+
+            const pattaniPos = { lat: locations[0].lat, lng: locations[0].lng };
+            const yalaPos = { lat: locations[1].lat, lng: locations[1].lng };
+            const naraPos = { lat: locations[2].lat, lng: locations[2].lng };
+
+            /* =========================================
+               จุดเปลี่ยนสีเส้นทางขับรถ (Bright Route Colors)
+               ========================================= */
+            // ปัตตานี ↔ ยะลา : สีชมพูอมม่วงนีออน (#FF007F)
+            renderRoute(pattaniPos, yalaPos, "#FF007F", (dist1, time1) => {
+                // ยะลา ↔ นราธิวาส : สีส้มทองสดใส (#FF8800)
+                renderRoute(yalaPos, naraPos, "#FF8800", (dist2, time2) => {
+                    // ปัตตานี ↔ นราธิวาส : สีฟ้ามิ้นท์สด (#00E5FF)
+                    renderRoute(pattaniPos, naraPos, "#00E5FF", (dist3, time3) => {
+                        document.getElementById('distance-info').innerHTML = `
+                            📍 <b>ปัตตานี ↔ ยะลา:</b> ${dist1} (${time1})<br>
+                            📍 <b>ยะลา ↔ นราธิวาส:</b> ${dist2} (${time2})<br>
+                            📍 <b>ปัตตานี ↔ นราธิวาส:</b> ${dist3} (${time3})
+                        `;
+                    });
+                });
+            });
+        }
+
+        function changeMapType(type, btn) {
+            map.setMapTypeId(type);
+            document.querySelectorAll('.map-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+    </script>
+</body>
+</html>
