@@ -1,1 +1,193 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio & Assignment Submission - นายอัสรี เจ๊ะอุมา</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Google Font (Prompt) -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome สำหรับไอคอน -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #f0fdf4; /* พื้นหลังโทนเขียวมิ้นต์อ่อนสบายตา */
+            color: #334155;
+            min-height: 100vh;
+        }
+        .soft-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(148, 163, 184, 0.08);
+            transition: all 0.25s ease;
+        }
+        .soft-card:hover {
+            transform: translateY(-4px);
+            border-color: #cbd5e1;
+            box-shadow: 0 12px 20px rgba(148, 163, 184, 0.15);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-teal-100 selection:text-teal-800 pb-16">
 
+    <!-- Header / Student Profile -->
+    <header class="max-w-5xl mx-auto px-4 pt-16 pb-10 text-center">
+        <div class="inline-block p-1.5 rounded-full bg-white shadow-md border border-emerald-100 mb-4">
+            <!-- รูปโปรไฟล์นักศึกษา -->
+            <img src="img/Untitled-1.jpg" 
+                 alt="Profile" 
+                 class="w-28 h-28 object-cover rounded-full border border-slate-100">
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-2 text-slate-800">
+            นายอัสรี เจ๊ะอุมา
+        </h1>
+        <p class="text-emerald-700 font-medium text-lg mb-1">รหัสนักศึกษา: 6820210384</p>
+        <p class="text-slate-500 text-sm max-w-lg mx-auto mb-6">
+            รายวิชา: COMPUTER FOR GEOGRAPHY / อาจารย์ผู้สอน: ดร.ชื่ออาจารย์<br>
+            มหาวิทยาลัยสงขลานครินทร์ (คณะมนุษยศาสตร์และสังคมศาสตร์/ภูมิศาสตร์)
+        </p>
+
+        <!-- Status Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100/80 border border-emerald-200 text-emerald-800 text-sm font-medium">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            สถานะ: พร้อมส่งงานและตรวจผลงาน
+        </div>
+    </header>
+
+    <!-- Main Content / Assignment Grid -->
+    <main class="max-w-5xl mx-auto px-4">
+        <div class="flex items-center justify-between mb-8 border-b border-emerald-200/60 pb-4">
+            <h2 class="text-xl font-semibold text-slate-800 flex items-center gap-2">
+                <i class="fa-solid fa-folder-open text-emerald-600"></i> รายการงานทั้งหมด
+            </h2>
+            <span class="text-xs text-slate-400">คลิกที่ปุ่มเพื่อดูรายละเอียดแต่ละงาน</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- งานที่ 1 -->
+            <div class="soft-card rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700 border border-emerald-200">01</span>
+                        <span class="text-xs text-slate-400"><i class="fa-regular fa-calendar"></i> งานที่ 1</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2 text-slate-800">งานทำเว็ปไซต์ภูมิศาสตร์กายภาพที่สนใจ</h3>
+                    <p class="text-slate-500 text-sm mb-6 line-clamp-2">
+                        ทำเรื่อง ความกดอากาศ
+                    </p>
+                </div>
+                <!-- ปุ่มกดไปหน้างาน -->
+                <a href="ar.html" class="w-full py-2.5 px-4 rounded-xl bg-teal-500 hover:bg-teal-600 text-white font-medium text-sm text-center transition shadow-sm flex items-center justify-center gap-2">
+                    <span>เข้าชมงาน</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <!-- งานที่ 2 -->
+            <div class="soft-card rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-sky-100 text-sky-700 border border-sky-200">02</span>
+                        <span class="text-xs text-slate-400"><i class="fa-regular fa-calendar"></i> งานที่ 2</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2 text-slate-800">การทำแผนที่</h3>
+                    <p class="text-slate-500 text-sm mb-6 line-clamp-2">
+                        ทำเกี่ยวกับการเดินทางของ3จังหวัด
+                    </p>
+                </div>
+                <!-- ปุ่มกดไปหน้างาน -->
+                <a href="map3.html" class="w-full py-2.5 px-4 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-medium text-sm text-center transition shadow-sm flex items-center justify-center gap-2">
+                    <span>เข้าชมงาน</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <!-- งานที่ 3 -->
+            <div class="soft-card rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-700 border border-amber-200">03</span>
+                        <span class="text-xs text-slate-400"><i class="fa-regular fa-calendar"></i> งานที่ 3</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2 text-slate-800">การวิเคราะห์ภูมิประเทศและเส้นชั้นความสูง</h3>
+                    <p class="text-slate-500 text-sm mb-6 line-clamp-2">
+                        ศึกษาพื้นที่จังหวัดพังงา
+                    </p>
+                </div>
+                <!-- ปุ่มกดไปหน้างาน -->
+                <a href="phungnga.html" class="w-full py-2.5 px-4 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-medium text-sm text-center transition shadow-sm flex items-center justify-center gap-2">
+                    <span>เข้าชมงาน</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <!-- งานที่ 4 -->
+            <div class="soft-card rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-100 text-indigo-700 border border-indigo-200">04</span>
+                        <span class="text-xs text-slate-400"><i class="fa-regular fa-calendar"></i> งานที่ 4</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2 text-slate-800">การวิเคราะห์การกระจายตัวของแผ่นดินไหว</h3>
+                    <p class="text-slate-500 text-sm mb-6 line-clamp-2">
+                        ศึกษาพื้นที่ประเทศอินโดนีเซีย
+                    </p>
+                </div>
+                <!-- ปุ่มกดไปหน้างาน -->
+                <a href="indo.html" class="w-full py-2.5 px-4 rounded-xl bg-indigo-500 hover:bg-indigo-600 text-white font-medium text-sm text-center transition shadow-sm flex items-center justify-center gap-2">
+                    <span>เข้าชมงาน</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <!-- งานที่ 5 -->
+            <div class="soft-card rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-rose-100 text-rose-700 border border-rose-200">05</span>
+                        <span class="text-xs text-slate-400"><i class="fa-regular fa-calendar"></i> งานที่ 5</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2 text-slate-800">กราฟสามมิติจุดศูนย์กลางแผ่นดินไหวภูมิภาค</h3>
+                    <p class="text-slate-500 text-sm mb-6 line-clamp-2">
+                        แสดงพิกัด ระดับความลึก และขนาดความรุนแรงของแผ่นดินไหวในรูปแบบ 3 มิติ
+                    </p>
+                </div>
+                <!-- ปุ่มกดไปหน้างาน -->
+                <a href="map/earthquake_3d.html" class="w-full py-2.5 px-4 rounded-xl bg-rose-500 hover:bg-rose-600 text-white font-medium text-sm text-center transition shadow-sm flex items-center justify-center gap-2">
+                    <span>เข้าชมงาน</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <!-- งานที่ 6 -->
+            <div class="soft-card rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700 border border-emerald-200">06</span>
+                        <span class="text-xs text-slate-400"><i class="fa-regular fa-calendar"></i> งานที่ 6</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2 text-slate-800">แผนที่โต้ตอบแสดงระดับแผ่นดินไหวภูมิภาค</h3>
+                    <p class="text-slate-500 text-sm mb-6 line-clamp-2">
+                        แสดงการกระจายตัวและสัญลักษณ์จำแนกตามระดับความรุนแรงของแผ่นดินไหว
+                    </p>
+                </div>
+                <!-- ปุ่มกดไปหน้างาน -->
+                <a href="map/earthquake_map.html" class="w-full py-2.5 px-4 rounded-xl bg-teal-500 hover:bg-teal-600 text-white font-medium text-sm text-center transition shadow-sm flex items-center justify-center gap-2">
+                    <span>เข้าชมงาน</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-5xl mx-auto px-4 mt-16 text-center text-slate-400 text-xs">
+        <p>&copy; 2026 Student Portfolio - นายอัสรี เจ๊ะอุมา. All rights reserved. | Built with Tailwind CSS</p>
+    </footer>
+
+</body>
+</html>
