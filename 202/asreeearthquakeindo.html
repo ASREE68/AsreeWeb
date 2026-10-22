@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายงานการวิเคราะห์แผ่นดินไหว ประเทศอินโดนีเซีย</title>
+    <style>
+        :root {
+            --primary-color: #0f172a;
+            --accent-color: #38bdf8;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #334155;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* ส่วนหัวเว็บไซต์แบบไล่ระดับสี (Gradient) */
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            margin: 0 0 10px 0;
+            font-size: 32px;
+            letter-spacing: 0.5px;
+        }
+        header p {
+            margin: 0;
+            font-size: 16px;
+            color: #94a3b8;
+        }
+
+        /* โครงสร้างเนื้อหา */
+        .container {
+            max-width: 950px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* การ์ดเนื้อหา พร้อมลูกเล่น Fade-in ตอนเลื่อนหน้าจอ */
+        .card {
+            background: var(--card-bg);
+            padding: 35px;
+            margin-bottom: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            
+            /* ค่าเริ่มต้นสำหรับแอนิเมชันเลื่อนหน้าจอ */
+            opacity: 0;
+            transform: translateY(40px);
+            visibility: hidden;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out, box-shadow 0.3s ease;
+        }
+
+        /* คลาสที่จะถูกกระตุ้นเมื่อเลื่อนมาเจอ */
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+
+        /* เอฟเฟกต์ยกการ์ดขึ้นเมื่อเอาเมาส์ชี้ */
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            color: #0ea5e9;
+            font-size: 22px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 12px;
+        }
+
+        .card p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #475569;
+        }
+
+        /* ส่วนกล่องรูปภาพและเอฟเฟกต์ซูม */
+        .image-box {
+            text-align: center;
+            margin-top: 25px;
+            overflow: hidden; /* สำคัญสำหรับซ่อนส่วนรูปที่ขยายเกินกรอบ */
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            background: #000;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); /* ความนุ่มนวลของการซูม */
+        }
+
+        /* เอฟเฟกต์รูปภาพขยายเมื่อเอาเมาส์ไปชี้ (Hover Zoom) */
+        .image-box:hover img {
+            transform: scale(1.05); /* ขยายภาพขึ้น 5% */
+        }
+
+        .image-caption {
+            margin-top: 12px;
+            font-size: 14px;
+            color: #64748b;
+            font-style: italic;
+            background: #fff;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ส่วนหัวเว็บไซต์ -->
+    <header>
+        <h1>การวิเคราะห์การกระจายตัวของแผ่นดินไหว ประเทศอินโดนีเซีย</h1>
+        <p>จัดทำโดย นายอัสรี เจ๊ะอุมา 6820210384</p>
+    </header>
+
+    <!-- ส่วนเนื้อหาหลัก -->
+    <div class="container">
+
+        <!-- 1. ความรุนแรง -->
+        <div class="card">
+            <h2>1. แผนที่แสดงขนาดความรุนแรงของแผ่นดินไหว</h2>
+            <p>แสดงการกระจายตัวและจำแนกขนาดความรุนแรงของแผ่นดินไหว (แมกนิจูด) ในพื้นที่ศึกษา ประเทศอินโดนีเซีย ระหว่างปี 1970 - 2000</p>
+            <div class="image-box">
+                <img src="img/ความแรงของแผนดินไหว.jpg" alt="แผนที่ความรุนแรงของแผ่นดินไหว">
+            </div>
+            <div class="image-caption">รูปที่ 1: แผนที่แสดงขนาดความรุนแรงของแผ่นดินไหว</div>
+        </div>
+
+        <!-- 2. กลางวันกลางคืน -->
+        <div class="card">
+            <h2>2. แผนที่แสดงการกระจายตัวจำแนกตามช่วงเวลากลางวันและกลางคืน</h2>
+            <p>วิเคราะห์จุดเกิดเหตุแผ่นดินไหวว่าเกิดขึ้นในช่วงเวลากลางวัน (จุดสีเหลือง) หรือช่วงเวลากลางคืน (จุดสีดำ) เพื่อดูรูปแบบการเกิดตามเวลา</p>
+            <div class="image-box">
+                <img src="img/กลางวัน - กลางคืน.jpg" alt="แผนที่กลางวันและกลางคืน">
+            </div>
+            <div class="image-caption">รูปที่ 2: แผนที่แสดงการกระจายตัวจำแนกตามช่วงเวลากลางวันและกลางคืน</div>
+        </div>
+
+        <!-- 3. ความลึก -->
+        <div class="card">
+            <h2>3. แผนที่แสดงระดับความลึกของแผ่นดินไหว</h2>
+            <p>แสดงระดับความลึกของจุดศูนย์กลางแผ่นดินไหวตั้งσόงแต่ระดับตื้นมาก ตื้น กลาง ลึก จนถึงลึกมาก เพื่อวิเคราะห์โครงสร้างทางธรณีวิทยา</p>
+            <div class="image-box">
+                <img src="img/ความลึก.jpg" alt="แผนที่ความลึกของแผ่นดินไหว">
+            </div>
+            <div class="image-caption">รูปที่ 3: แผนที่แสดงระดับความลึกของแผ่นดินไหว</div>
+        </div>
+
+    </div>
+
+    <!-- JavaScript สำหรับทำเอฟเฟกต์เลื่อนหน้าจอแล้วค่อยๆ เฟดอินการ์ดทีละอัน -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const cards = document.querySelectorAll('.card');
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // เล่นแอนิเมชันครั้งเดียวตอนเลื่อนมาเจอ
+                    }
+                });
+            }, {
+                threshold: 0.15 // เริ่มแสดงผลเมื่อการ์ดโผล่ขึ้นมาในจอ 15%
+            });
+
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+
+</body>
+</html>
