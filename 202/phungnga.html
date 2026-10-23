@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายงานการวิเคราะห์ภูมิประเทศและเส้นชั้นความสูง จังหวัดพังงา</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+        }
+        header p {
+            margin-top: 10px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        section {
+            margin-bottom: 45px;
+        }
+        h2 {
+            color: #1e3c72;
+            border-bottom: 3px solid #2a5298;
+            padding-bottom: 8px;
+            margin-top: 0;
+        }
+        p {
+            font-size: 1.05rem;
+        }
+        .img-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .img-card {
+            background: #fafafa;
+            border: 1px solid #e1e1e1;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .img-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        .img-caption {
+            font-size: 0.95rem;
+            color: #555;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+            font-size: 0.9rem;
+            background-color: #eef2f3;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>การวิเคราะห์ข้อมูลภูมิประเทศและเส้นชั้นความสูง</h1>
+        <p>พื้นที่ศึกษา: จังหวัดพังงา (GIS Project Presentation)</p>
+    </header>
+
+    <div class="container">
+        <!-- ส่วนที่ 1: ข้อมูลโครงการ -->
+        <section>
+            <h2>1. ข้อมูลภาพรวมโครงการ (Overview)</h2>
+            <p>การศึกษานี้จัดทำขึ้นเพื่อวิเคราะห์ลักษณะภูมิประเทศ ความสูงต่ำ และโครงสร้างเส้นชั้นความสูงของจังหวัดพังงา โดยใช้เครื่องมือระบบสารสนเทศภูมิศาสตร์ (QGIS) ในการประมวลผลชั้นข้อมูลเชิงพื้นที่ต่างๆ</p>
+            
+            <div class="img-grid">
+                <div class="img-card">
+                    <!-- รูปที่ 1: ภาพหน้าจอ QGIS ภาพรวม -->
+                    <img src="img/Screenshot 2026-09-30 152647.png" alt="ภาพรวมโปรเจกต์ QGIS จังหวัดพังงา">
+                    <div class="img-caption">รูปที่ 1: หน้าจอแสดงผลโปรเจกต์ QGIS ภาพรวมพื้นที่จังหวัดพังงา</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ส่วนที่ 2: การวิเคราะห์เส้นชั้นความสูง -->
+        <section>
+            <h2>2. การวิเคราะห์เส้นชั้นความสูง (Contour Analysis)</h2>
+            <p>การแสดงผลลัพธ์ของเส้นชั้นความสูง (Contour Lines) ช่วยให้เห็นความหนาแน่นและความชันของพื้นที่ภูเขาในจังหวัดพังงา ซึ่งมีการไล่ระดับความสูงอย่างชัดเจนตามลักษณะภูมิประเทศจริง</p>
+            
+            <div class="img-grid">
+                <div class="img-card">
+                    <!-- รูปที่ 2: ภาพซูมเส้น Contour -->
+                    <img src="img/Screenshot 2026-09-30 152534.png" alt="การแสดงผลเส้นชั้นความสูงแบบซูมใกล้">
+                    <div class="img-caption">รูปที่ 2: รายละเอียดเส้นชั้นความสูง (Contour) และระดับความสูงของพื้นที่</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ส่วนที่ 3: การตัดขวางภูมิประเทศ (Profile Tool) -->
+        <section>
+            <h2>3. การวิเคราะห์หน้าตัดความสูงภูมิประเทศ (Elevation Profile)</h2>
+            <p>การใช้เครื่องมือ Profile Tool ช่วยจำลองความสูงต่ำในแนวตัดขวาง ทำให้เห็นภาพความชันและยอดเขาในรูปแบบกราฟ 2 มิติ ดังนี้ครับ:</p>
+            
+            <div class="img-grid">
+                <div class="img-card">
+                    <!-- รูปที่ 3: กราฟความสูงแผนที่ -->
+                    <img src="img/ความสูงแผนที่.png" alt="กราฟแสดงความสูงของแผนที่">
+                    <div class="img-caption">รูปที่ 3: กราฟแสดงระดับความสูงภูมิประเทศในแนวจากทิศเหนือไปยังทิศใต้</div>
+                </div>
+
+                <div class="img-card">
+                    <!-- รูปที่ 4: กราฟความสูงจากตะวันตกไปตะวันออก -->
+                    <img src="img/ความสูงแผนที่จากตกไปออก.png" alt="กราฟแสดงความสูงแนวตะวันตกไปตะวันออก">
+                    <div class="img-caption">รูปที่ 4: กราฟแสดงระดับความสูงภูมิประเทศในแนวจากทิศตะวันตกไปยังทิศตะวันออก</div>
+                </div>
+            </div>
+        </section>
+
+    <footer>
+        <p>จัดทำเพื่อประกอบการนำเสนอผลงาน (GIS Web Presentation)</p>
+    </footer>
+
+</body>
+</html>
