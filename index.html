@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASREE PORTFOLIO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f7faf8;
+            --card-bg: #ffffff;
+            --text-title: #1e3a2b;
+            --text-sub: #4a5568;
+            --text-muted: #718096;
+            --green-btn: #0d9488;
+            --green-btn-hover: #0f766e;
+            --blue-btn: #2563eb;
+            --blue-btn-hover: #1d4ed8;
+            --sub-box-bg: #edf7f2;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Sarabun', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-sub);
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-title);
+            margin-bottom: 0.5rem;
+        }
+
+        .logo-icon {
+            color: #22c55e;
+            font-size: 1.8rem;
+        }
+
+        .profile-info {
+            font-size: 1.05rem;
+            color: var(--text-sub);
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+        }
+
+        .header-badge {
+            display: inline-block;
+            background-color: #e6f4ed;
+            color: #2e7d32;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+        }
+
+        /* Section Header */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-title);
+            margin-top: 2rem;
+            margin-bottom: 0.8rem;
+            border-bottom: 1px solid #cbd5e1;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title .icon-box {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background-color: #94a3b8;
+            border-radius: 3px;
+        }
+
+        .section-desc-box {
+            background-color: var(--sub-box-bg);
+            border-left: 4px solid #10b981;
+            padding: 1rem;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            color: var(--text-sub);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 850px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 550px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Card Component */
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+            min-height: 160px;
+        }
+
+        .card-content h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-content p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-green {
+            background-color: var(--green-btn);
+        }
+
+        .btn-green:hover {
+            background-color: var(--green-btn-hover);
+        }
+
+        .btn-blue {
+            background-color: var(--blue-btn);
+        }
+
+        .btn-blue:hover {
+            background-color: var(--blue-btn-hover);
+        }
+
+        /* Icon Colors */
+        .icon-web { color: #0284c7; }
+        .icon-excel { color: #16a34a; }
+        .icon-ppt { color: #ea580c; }
+        .icon-word { color: #2563eb; }
+        .icon-img { color: #ca8a04; }
+
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo-title">
+                <span class="logo-icon">🌿</span> ASREE CHEAUMA
+            </div>
+            <div class="profile-info">
+                รวบรวมผลงานรายวิชาคอมพิวเตอร์<br>
+                <strong>นายอัสรี เจ๊ะอุมา</strong><br>
+                รหัสนักศึกษา 6820210384
+            </div>
+            <div class="header-badge">
+                หน้าแรกสำหรับเข้าชมและดาวน์โหลดผลงานทั้งหมด
+            </div>
+        </header>
+
+        <!-- Section 202 -->
+        <div class="section-title">
+            <span class="icon-box"></span>
+            วิชา 202 — เว็บไซต์และเอกสาร
+        </div>
+        <div class="section-desc-box">
+            รวมผลงานเว็บไซต์ทั้ง 6 งาน พร้อมไฟล์เอกสารประกอบ
+        </div>
+
+        <div class="grid">
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="card-content">
+                    <h3><span class="icon-web">🌐</span> Portfolio เว็บไซต์ทั้ง 6 งาน</h3>
+                    <p>หน้าแรกเดิม รวมลิงก์งานเว็บไซต์ทั้งหมด</p>
+                </div>
+                <a href="202/asreeindex.html" target="_blank" class="btn btn-green">เข้าชม Portfolio</a>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="card-content">
+                    <h3><span class="icon-excel">📊</span> Excel — Dashboard</h3>
+                    <p>ไฟล์งาน Excel</p>
+                </div>
+                <a href="202/Asree.geo.xlsx" download class="btn btn-blue">ดาวน์โหลด Excel</a>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="card-content">
+                    <h3><span class="icon-excel">📊</span> Excel — ประชากรอายุ</h3>
+                    <p>ไฟล์งาน Excel</p>
+                </div>
+                <a href="202/ประชากรอายุ.xlsx" download class="btn btn-blue">ดาวน์โหลด Excel</a>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card">
+                <div class="card-content">
+                    <h3><span class="icon-ppt">📊</span> PowerPoint — Flowchart</h3>
+                    <p>ไฟล์งานนำเสนอ</p>
+                </div>
+                <a href="202/AsreeFlowchart.pptx" download class="btn btn-blue">ดาวน์โหลด PowerPoint</a>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="card">
+                <div class="card-content">
+                    <h3><span class="icon-word">📄</span> Word — หนังสือราชการ</h3>
+                    <p>ไฟล์เอกสาร</p>
+                </div>
+                <a href="202/หนังสือราชการ.docx" download class="btn btn-blue">ดาวน์โหลด Word</a>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="card">
+                <div class="card-content">
+                    <h3><span class="icon-word">📄</span> Word — อ้างอิง</h3>
+                    <p>ไฟล์เอกสาร</p>
+                </div>
+                <a href="202/อ้างอิง.docx" download class="btn btn-blue">ดาวน์โหลด Word</a>
+            </div>
+        </div>
+
+        <!-- Section 203 -->
+        <div class="section-title">
+            <span class="icon-box"></span>
+            วิชา 203 — Excel และรูปภาพ
+        </div>
+        <div class="section-desc-box">
+            รวมไฟล์ Excel และภาพประกอบการศึกษาแผ่นดินไหว
+        </div>
+
+        <div class="grid">
+            <!-- Card 7 -->
+            <div class="card">
+                <div class="card-content">
+                    <h3><span class="icon-excel">📊</span> indonesia.xlsx</h3>
+                    <p>ไฟล์ Excel ประกอบงาน</p>
+                </div>
+                <a href="203/indonesia.xlsx" download class="btn btn-blue">ดาวน์โหลด Excel</a>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="card">
+                <div class="card-content">
+                    <h3><span class="icon-img">🖼️</span> การเกิดแผ่นดินไหวกลางวัน–กลางคืน</h3>
+                    <p>ภาพแสดงการเกิดแผ่นดินไหวในช่วงกลางวันและกลางคืน</p>
+                </div>
+                <a href="203/กลางวัน - กลางคืน.jpg" target="_blank" class="btn btn-green">เปิดดูภาพ</a>
+            </div>
+
+            <!-- Card 9 -->
+            <div class="card">
+                <div class="card-content">
+                    <h3><span class="icon-img">🖼️</span> ความลึกของแผ่นดินไหว</h3>
+                    <p>ภาพแสดงข้อมูลความลึกของแผ่นดินไหว</p>
+                </div>
+                <a href="203/ความลึก.jpg" target="_blank" class="btn btn-green">เปิดดูภาพ</a>
+            </div>
+
+            <!-- Card 10 -->
+            <div class="card">
+                <div class="card-content">
+                    <h3><span class="icon-img">🖼️</span> ความแรงของแผ่นดินไหว</h3>
+                    <p>ภาพแสดงระดับความแรงของแผ่นดินไหว</p>
+                </div>
+                <a href="203/ความแรงของแผ่นดินไหว.jpg" target="_blank" class="btn btn-green">เปิดดูภาพ</a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            © 2026 Asree Portfolio<br>
+            รวบรวมผลงานสำหรับตรวจและส่งงาน
+        </footer>
+    </div>
+
+</body>
+</html>
